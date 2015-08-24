@@ -66,10 +66,10 @@ class Game
 
   # This function starts the game
   def start_game
-    @turn = 0
+]
+    @turn1 = 0
     @turn2 = 0
     @turn3 = 0
-    @turn4 = 0
     unless @num_of_type_of_play == 2
       puts "Welcome to my Tic Tac Toe game"
       puts "Please select your spot by typing a number from 0 to 8"
@@ -77,9 +77,8 @@ class Game
     puts "|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
     
     until game_is_over(@board) || tie(@board)
-      # puts "turn is #{@turn}"
+ 
       type_of_play(@num_of_type_of_play)
-      @turn += 1
       puts "|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
     end
     if who_won(@board) and game_is_over(@board)
@@ -282,8 +281,8 @@ class Game
   # This is a defensive move if the first player marked the edge. They are pretty much screwed if they did this.
   def defensive_marked_edge?(board,center_spot,opposing_player_piece,my_piece)
 
-   if @turn2 < 1 and center_spot == my_piece
-    @turn2 += 1
+   if @turn1 < 1 and center_spot == my_piece
+    @turn1 += 1
     # puts "Defensive Move: Marked Edge"
     if board[1] != "1" and board[6] == "6"
       return 6   
@@ -310,9 +309,9 @@ class Game
 
   # This is a defensive move if the player marked the corner. The game can either end in a tie or a win if they other player messed up
   def defensive_marked_corner?(board,opposing_player_piece)
-    if @turn3 < 1
+    if @turn2 < 1
     # puts "Defensive Move: Marked Corner!"
-      @turn3 += 1
+      @turn2 += 1
       if board[0] == opposing_player_piece and board[8] == "8"
         return 8
       elsif board[2] == opposing_player_piece and board[6] == "6"
@@ -329,8 +328,8 @@ class Game
 
   # If the other player is going first and is good at Tic-Tac-Toe this will see if they are using the above methods and make the game end in a tie.
   def defensive_diag_offense_counter_attack(board)
-    if @turn4 < 1
-      @turn4 += 1
+    if @turn3 < 1
+      @turn3 += 1
       if board[1] == "1"
         return 1
       elsif board[3] == "3"
