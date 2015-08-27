@@ -66,7 +66,7 @@ class Game
 
   # This function starts the game
   def start_game
-]
+    
     @turn1 = 0
     @turn2 = 0
     @turn3 = 0
